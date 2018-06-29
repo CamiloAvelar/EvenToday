@@ -46,4 +46,43 @@ router.delete('/delete/:user_id', (req, res) => {
 
 });
 
+router.post('/select/evento', (req, res) => {
+  const nome = req.body.nome;
+
+  pool.query(`SELECT * FROM evento WHERE nome = '${nome}'`)
+  .then((resQuery) => {
+    res.send(resQuery.rows);
+  })
+  .catch(err => {
+    console.error('Error executing query', err.stack);
+  })
+
+});
+
+router.post('/select/estabelecimento', (req, res) => {
+  const estabelecimentoNome = req.body.nome;
+
+  pool.query(`SELECT * FROM estabelecimento WHERE nome = '${estabelecimentoNome}'`)
+  .then((resQuery) => {
+    res.send(resQuery.rows);
+  })
+  .catch(err => {
+    console.error('Error executing query', err.stack);
+  })
+
+});
+
+router.post('/select/usuario', (req, res) => {
+  const nomeUsuario = req.body.nome;
+
+  pool.query(`SELECT * FROM usuario WHERE nome = '${nomeUsuario}'`)
+  .then((resQuery) => {
+    res.send(resQuery.rows);
+  })
+  .catch(err => {
+    console.error('Error executing query', err.stack);
+  })
+
+});
+
 module.exports = router;

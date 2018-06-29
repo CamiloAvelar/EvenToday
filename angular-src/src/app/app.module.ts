@@ -13,6 +13,9 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ConsultasComponent } from './components/consultas/consultas.component';
+import { ShowUsersComponent } from './components/show-users/show-users.component';
+import { ShowEstabelecimentoComponent } from './components/show-estabelecimento/show-estabelecimento.component';
+import { ShowEventoComponent } from './components/show-evento/show-evento.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -27,7 +30,10 @@ const appRoutes: Routes = [
     HomeComponent,
     UsersComponent,
     NavbarComponent,
-    ConsultasComponent
+    ConsultasComponent,
+    ShowUsersComponent,
+    ShowEstabelecimentoComponent,
+    ShowEventoComponent
   ],
   imports: [
     BrowserModule,

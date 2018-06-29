@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
     this.queryService.getUsers().subscribe(usuarios => {
       this.data = usuarios;
     });
-    this.queryService.currentdata.subscribe(data => this.data = data);
+    this.queryService.currentusuarios.subscribe(data => this.data = data);
   }
 
   deleteUser(user){

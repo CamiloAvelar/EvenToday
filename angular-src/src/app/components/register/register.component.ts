@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   constructor(private querysService: QuerysService) { }
 
   ngOnInit() {
-    this.querysService.currentdata.subscribe(data => this.data = data)
+    this.querysService.currentusuarios.subscribe(data => this.data = data)
   }
 
   onFormSubmit(){

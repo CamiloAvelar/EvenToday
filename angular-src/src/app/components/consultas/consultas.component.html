@@ -9,19 +9,21 @@
           </div>
           <input type="submit" class="btn btn-primary mb-3" value="Pesquisar">
         </form>
+        <app-show-users></app-show-users>
       </ng-template>
     </ngb-tab>
-    <ngb-tab id="tab-selectbyid2" title="Pesquisar por Nome do estabelecimento">
+    <ngb-tab id="tab-selectbyid2" title="Pesquisar por Nome do Estabelecimento">
       <ng-template ngbTabContent>
-      <form (submit)="onEstabelecimentoSubmit()">
-        <div class="form-group mt-3">
-          <label>Nome do estabelecimento: </label>
-          <input type="text" class="form-control" [(ngModel)]="nomeestabelecimento" name="nomeestabelecimento">
-        </div>
-        <input type="submit" class="btn btn-primary mb-3" value="Pesquisar">
-      </form>
-    </ng-template>
-  </ngb-tab>
+        <form (submit)="onEstabelecimentoSubmit()">
+          <div class="form-group mt-3">
+            <label>Nome do estabelecimento: </label>
+            <input type="text" class="form-control" [(ngModel)]="nomeestabelecimento" name="nomeestabelecimento">
+          </div>
+          <input type="submit" class="btn btn-primary mb-3" value="Pesquisar">
+        </form>
+        <app-show-estabelecimento></app-show-estabelecimento>
+      </ng-template>
+    </ngb-tab>
     <ngb-tab id="tab-selectbyid3" title="Pesquisar por Nome do Evento">
       <ng-template ngbTabContent>
         <form (submit)="onEventoSubmit()">
@@ -31,6 +33,7 @@
           </div>
           <input type="submit" class="btn btn-primary mb-3" value="Pesquisar">
         </form>
+        <app-show-evento></app-show-evento>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
