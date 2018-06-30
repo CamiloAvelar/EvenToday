@@ -3,6 +3,8 @@ const router = express.Router();
 
 const pool = require('../config/database');
 
+pool.connect();
+
 router.get('/users/all', (req, res) => {
     pool.query(`SELECT * FROM usuario`)
     .then((resQuery) => {
