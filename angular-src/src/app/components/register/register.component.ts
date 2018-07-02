@@ -11,12 +11,20 @@ import { QuerysService } from '../../services/querys.service';
 })
 export class RegisterComponent implements OnInit {
 
+  public isCollapsed = true;
+
   data: any;
   usuario: Usuario;
   id: any;
   nome: string;
   email: string;
   nascimento: string;
+  cep: any;
+  logradouro: string;
+  bairro: string;
+  cidade: string;
+  pais: string;
+  estado: string;
 
   constructor(private querysService: QuerysService) { }
 
@@ -32,13 +40,23 @@ export class RegisterComponent implements OnInit {
     //   this.querysService.sendData(data);
     // });
 
-    const id = Math.floor((Math.random() * 100000) + 1)
+    const id = Math.floor((Math.random() * 100000) + 1);
+    const latitude = Math.floor((Math.random() * 100000) + 1);
+    const longitude = Math.floor((Math.random() * 100000) + 1);
 
     const usuario = {
       id: id,
       nome: this.nome,
       email: this.email,
-      nascimento: this.nascimento
+      nascimento: this.nascimento,
+      logradouro: this.logradouro,
+      cep: this.cep,
+      bairro: this.bairro,
+      cidade: this.cidade,
+      estado: this.estado,
+      pais: this.pais,
+      latitude: latitude,
+      longitude: longitude
     };
 
     this.querysService.cadastraUsuario(usuario).subscribe(data => {
@@ -53,7 +71,13 @@ export class RegisterComponent implements OnInit {
   clearForm(){
     this.nome = '',
     this.email = '',
-    this.nascimento = ''
+    this.nascimento = '',
+    this.logradouro = '',
+    this.cep = '',
+    this.bairro = '',
+    this.cidade = '',
+    this.estado = '',
+    this.pais = ''
   }
 
 }

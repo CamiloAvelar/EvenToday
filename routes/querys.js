@@ -4,7 +4,7 @@ const router = express.Router();
 const pool = require('../config/database');
 
 router.get('/users/all', (req, res) => {
-    pool.query(`SELECT * FROM public.usuario`)
+    pool.query(`SELECT * FROM usuario JOIN localizacao ON usuario.localizacaochave = localizacao.latitude`)
     .then((resQuery) => {
       res.send(resQuery.rows);
       })
@@ -19,10 +19,24 @@ router.post('/cadastro', (req, res) => {
     id: req.body.id,
     nome: req.body.nome,
     email: req.body.email,
-    nascimento: req.body.nascimento
+    nascimento: req.body.nascimento,
+    logradouro: req.body.logradouro,
+    cep: req.body.cep,
+    bairro: req.body.bairro,
+    cidade: req.body.cidade,
+    estado: req.body.estado,
+    pais: req.body.pais,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude
   };
 
-  pool.query(`INSERT INTO public.usuario(id, nome, email, linkfoto, data_nasc, localizacaochave, localizacaochavelong) VALUES ('${usuario.id}', '${usuario.nome}', '${usuario.email}', '', '${usuario.nascimento}', '135648', '198756') RETURNING *`)
+  pool.query(`
+  INSERT INTO public.localizacao(logradouro, cep, bairro, cidade, estado, pais, latitude, longitude) 
+  VALUES ('${usuario.logradouro}', '${usuario.cep}', '${usuario.bairro}', '${usuario.cidade}', '${usuario.estado}', '${usuario.pais}', '${usuario.latitude}', '${usuario.longitude}');
+
+  INSERT INTO public.usuario(id, nome, email, linkfoto, data_nasc, localizacaochave, localizacaochavelong)
+  VALUES ('${usuario.id}', '${usuario.nome}', '${usuario.email}', '', '${usuario.nascimento}', '${usuario.latitude}', '${usuario.longitude}')`
+  )
   .then((resQuery) => {
     res.send(resQuery.rows);
     })
@@ -75,7 +89,7 @@ router.post('/select/estabelecimento', (req, res) => {
 router.post('/select/usuario', (req, res) => {
   const nomeUsuario = req.body.nome;
 
-  pool.query(`SELECT * FROM usuario WHERE nome ILIKE '%${nomeUsuario}%'`)
+  pool.query(`SELECT * FROM usuario JOIN localizacao ON usuario.localizacaochave = localizacao.latitude WHERE nome ILIKE '%${nomeUsuario}%'`)
   .then((resQuery) => {
     res.send(resQuery.rows);
   })
