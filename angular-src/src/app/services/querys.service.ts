@@ -23,6 +23,12 @@ export class QuerysService {
   private evento = new BehaviorSubject('');
   currentevento = this.evento.asObservable();
 
+  // usersUrl: string = 'http://localhost:8080/querys/users/all';
+  // cadastroUrl: string = 'http://localhost:8080/querys/cadastro';
+  // deleteUrl: string = 'http://localhost:8080/querys/delete';
+  // selectEventoUrl: string = 'http://localhost:8080/querys/select/evento';
+  // selectEstabelecimentoUrl: string = 'http://localhost:8080/querys/select/estabelecimento';
+  // selectUsuarioUrl: string = 'http://localhost:8080/querys/select/usuario';
   usersUrl: string = '/querys/users/all';
   cadastroUrl: string = '/querys/cadastro';
   deleteUrl: string = '/querys/delete';

@@ -4,7 +4,7 @@ const router = express.Router();
 const pool = require('../config/database');
 
 router.get('/users/all', (req, res) => {
-    pool.query(`SELECT * FROM usuario`)
+    pool.query(`SELECT * FROM public.usuario`)
     .then((resQuery) => {
       res.send(resQuery.rows);
       })
@@ -22,7 +22,7 @@ router.post('/cadastro', (req, res) => {
     nascimento: req.body.nascimento
   };
 
-  pool.query(`INSERT INTO usuario(id, nome, email, data_nasc) VALUES ('${usuario.id}', '${usuario.nome}', '${usuario.email}', '${usuario.nascimento}') RETURNING *`)
+  pool.query(`INSERT INTO public.usuario(id, nome, email, linkfoto, data_nasc, localizacaochave, localizacaochavelong) VALUES ('${usuario.id}', '${usuario.nome}', '${usuario.email}', '', '${usuario.nascimento}', '135648', '198756') RETURNING *`)
   .then((resQuery) => {
     res.send(resQuery.rows);
     })
@@ -35,7 +35,7 @@ router.post('/cadastro', (req, res) => {
 router.delete('/delete/:user_id', (req, res) => {
   const id = req.params.user_id;
 
-  pool.query(`DELETE FROM usuario WHERE id = '${id}'`)
+  pool.query(`DELETE FROM public.usuario WHERE id = '${id}'`)
   .then((resQuery) => {
     res.send(resQuery.rows);
     })
@@ -49,7 +49,7 @@ router.delete('/delete/:user_id', (req, res) => {
 router.post('/select/evento', (req, res) => {
   const nome = req.body.nome;
 
-  pool.query(`SELECT * FROM evento WHERE nome = '${nome}'`)
+  pool.query(`SELECT * FROM public.evento WHERE nome ILIKE '%${nome}%'`)
   .then((resQuery) => {
     res.send(resQuery.rows);
   })
@@ -62,7 +62,7 @@ router.post('/select/evento', (req, res) => {
 router.post('/select/estabelecimento', (req, res) => {
   const estabelecimentoNome = req.body.nome;
 
-  pool.query(`SELECT * FROM estabelecimento WHERE nome = '${estabelecimentoNome}'`)
+  pool.query(`SELECT * FROM estabelecimento WHERE nome ILIKE '%${estabelecimentoNome}%'`)
   .then((resQuery) => {
     res.send(resQuery.rows);
   })
@@ -75,7 +75,7 @@ router.post('/select/estabelecimento', (req, res) => {
 router.post('/select/usuario', (req, res) => {
   const nomeUsuario = req.body.nome;
 
-  pool.query(`SELECT * FROM usuario WHERE nome = '${nomeUsuario}'`)
+  pool.query(`SELECT * FROM usuario WHERE nome ILIKE '%${nomeUsuario}%'`)
   .then((resQuery) => {
     res.send(resQuery.rows);
   })

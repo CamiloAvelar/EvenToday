@@ -7,7 +7,7 @@
           <div class="card-body">
             <h4 class="card-title">{{ item.nome }}</h4>
             <p class="card-text">Email: {{ item.email }}</p>
-            <p class="card-text">Data de Nascimento: {{ item.data_nasc }}</p>
+            <p class="card-text">Data de Nascimento: {{ item.data_nasc | date:'d MMMM, y'}}</p>
             <button (click)="deleteUser(item)" type="button" class="btn btn-danger mr-1">
               <i class="fa fa-remove"></i>
             </button>
