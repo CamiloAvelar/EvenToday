@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   usuario: Usuario;
   id: any;
   nome: string;
+  senha: any;
   email: string;
   nascimento: string;
   cep: any;
@@ -47,6 +48,7 @@ export class RegisterComponent implements OnInit {
     const usuario = {
       id: id,
       nome: this.nome,
+      senha: this.senha,
       email: this.email,
       nascimento: this.nascimento,
       logradouro: this.logradouro,
@@ -71,6 +73,7 @@ export class RegisterComponent implements OnInit {
   clearForm(){
     this.nome = '',
     this.email = '',
+    this.senha = '',
     this.nascimento = '',
     this.logradouro = '',
     this.cep = '',

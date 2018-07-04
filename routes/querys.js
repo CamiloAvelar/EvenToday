@@ -18,6 +18,7 @@ router.post('/cadastro', (req, res) => {
   const usuario = {
     id: req.body.id,
     nome: req.body.nome,
+    senha: req.body.senha,
     email: req.body.email,
     nascimento: req.body.nascimento,
     logradouro: req.body.logradouro,
@@ -34,8 +35,8 @@ router.post('/cadastro', (req, res) => {
   INSERT INTO public.localizacao(logradouro, cep, bairro, cidade, estado, pais, latitude, longitude) 
   VALUES ('${usuario.logradouro}', '${usuario.cep}', '${usuario.bairro}', '${usuario.cidade}', '${usuario.estado}', '${usuario.pais}', '${usuario.latitude}', '${usuario.longitude}');
 
-  INSERT INTO public.usuario(id, nome, email, linkfoto, data_nasc, localizacaochave, localizacaochavelong)
-  VALUES ('${usuario.id}', '${usuario.nome}', '${usuario.email}', '', '${usuario.nascimento}', '${usuario.latitude}', '${usuario.longitude}')`
+  INSERT INTO public.usuario(id, senha,  nome, email, linkfoto, data_nasc, localizacaochave, localizacaochavelong)
+  VALUES ('${usuario.id}', ${usuario.senha}, '${usuario.nome}', '${usuario.email}', '', '${usuario.nascimento}', '${usuario.latitude}', '${usuario.longitude}')`
   )
   .then((resQuery) => {
     res.send(resQuery.rows);
